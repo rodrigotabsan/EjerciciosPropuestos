@@ -145,24 +145,14 @@ public class EjerciciosPropuestos1 {
 	
 	private static double calcularPorcentajeTotal(final boolean isMujer, final boolean hasHijos) {
 		double porcentajeTotalAniadido = 0.0;
-		porcentajeTotalAniadido += calcularPorcentajeMujer(isMujer);
-		porcentajeTotalAniadido += calcularPorcentajeHijos(hasHijos);
-		return porcentajeTotalAniadido;
-	}
-	
-	private static double calcularPorcentajeMujer(boolean isMujer) {
-		double porcentajeAniadido = 0.0;
+		double porcentajeParaMujer = 0.02;
+		double porcentajeConHijos = 0.01;
 		if(isMujer) {
-			porcentajeAniadido = 0.02;
+			porcentajeTotalAniadido = porcentajeParaMujer;
 		}
-		return porcentajeAniadido;
-	}
-	
-	private static double calcularPorcentajeHijos(boolean hasHijos) {
-		double porcentajeAniadido = 0.0;
 		if(hasHijos) {
-			porcentajeAniadido = 0.01;
+			porcentajeTotalAniadido += porcentajeConHijos;
 		}
-		return porcentajeAniadido;
+		return porcentajeTotalAniadido;
 	}
 }
