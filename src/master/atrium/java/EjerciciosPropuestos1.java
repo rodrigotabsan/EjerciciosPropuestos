@@ -75,7 +75,7 @@ public class EjerciciosPropuestos1 {
 		double renta = 0;
 		if(tiempo <= 24) {
 			renta = (tiempo * 0.05 * capital)/1200;
-		} else if(tiempo <= 60){
+		} else if(tiempo <= 60) {
 			renta = (tiempo * 0.08 * capital)/1200;
 		} else {
 			renta = (tiempo * 0.10 * capital)/1200;
