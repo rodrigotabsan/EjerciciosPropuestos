@@ -11,7 +11,7 @@ public class EjerciciosPropuestos1 {
 		var segundoNumero = 4;
 		var multiplo = 2;
 		var sueldo = 38000;
-		var hasHijos = false;
+		var numHijos = 3;
 		var isMujer = false;
 		var tiempo = 12;
 		System.out.println("¿es segundoNumero par? " + isPar(primerNumero));
@@ -23,7 +23,7 @@ public class EjerciciosPropuestos1 {
 		System.out.println("¿Es un conjunto de números pares y múltiplos de "+multiplo+"? "+allParAndOrMultiploOfANumber(multiplo, primerNumero,segundoNumero,3,4,5,6));
 		System.out.println("¿Algún número del conjunto es un número par y múltiplo de "+multiplo+"? "+anyParAndOrMultiploOfANumber(multiplo, primerNumero,segundoNumero,3,4,5,6));
 		System.out.println("Calculamos la renta: "+ calcularRenta(sueldo, tiempo));
-		System.out.println("Calculamos el sueldo: " + calcularSueldo(isMujer, hasHijos, sueldo));
+		System.out.println("Calculamos el sueldo: " + calcularSueldo(isMujer, numHijos, sueldo));
 	}	
 	
 	/**
@@ -39,7 +39,7 @@ public class EjerciciosPropuestos1 {
 	/**
 	 * Comparar dos números y decir cuál es el mayor
 	 */
-	private static int getMayor(final int primerNumero, final int segundoNumero) {		
+	private static int getMayor(final int primerNumero, final int segundoNumero) {
 		return (primerNumero > segundoNumero) ? primerNumero : segundoNumero;
 		// var numMayor = (primerNumero>segundoNumero) ? primerNumero : segundoNumero;
 		// return numMayor;
@@ -125,33 +125,65 @@ public class EjerciciosPropuestos1 {
 	 * además:
 	 * Si son mujeres tienen un 2% adicional
 	 * Si tienen hijos tienen un 1% adicional por hijo
+	 * @param isMujer
+	 * @param numHijos
+	 * @param sueldo
+	 * @return
 	 */
-	private static double calcularSueldo(boolean isMujer, boolean hasHijos,
+	private static double calcularSueldo(boolean isMujer, final int numHijos,
 			final int sueldo) {
 		double porcentaje = 0.0;
 		
 		if(sueldo < 15000) {
 			porcentaje = 0.15;
-			porcentaje += calcularPorcentajeTotal(isMujer, hasHijos);
+			porcentaje += calcularPorcentajeTotal(isMujer, numHijos);
 			System.out.println("Porcentaje es "+porcentaje);
 		} else if(sueldo >= 15000) {
 			porcentaje = 0.12;
-			porcentaje += calcularPorcentajeTotal(isMujer, hasHijos);
+			porcentaje += calcularPorcentajeTotal(isMujer, numHijos);
 			System.out.println("Porcentaje es "+porcentaje);
 		}
 				
 		return sueldo * porcentaje + sueldo;
 	}
 	
-	private static double calcularPorcentajeTotal(final boolean isMujer, final boolean hasHijos) {
+	/**
+	 * Calcula el porcentaje total a aplicar en los sueldos
+	 * @param isMujer
+	 * @param numHijos
+	 * @return
+	 */
+	private static double calcularPorcentajeTotal(final boolean isMujer, final int numHijos) {
 		double porcentajeTotalAniadido = 0.0;
-		double porcentajeParaMujer = 0.02;
+		porcentajeTotalAniadido += calcularPorcentajeParaMujer(isMujer);
+		porcentajeTotalAniadido += calcularPorcentajeParaNumHijos(numHijos);		
+		return porcentajeTotalAniadido;
+	}
+	
+	/**
+	 * Calcula el porcentaje para el número de hijos
+	 * @param numHijos
+	 * @return
+	 */
+	private static double calcularPorcentajeParaNumHijos(final int numHijos) {
 		double porcentajeConHijos = 0.01;
+		double porcentajeTotalAniadido = 0.0;
+		if(numHijos>0) {
+			porcentajeTotalAniadido = (porcentajeConHijos*numHijos);			
+		}
+		return porcentajeTotalAniadido;
+	}
+	
+	/**
+	 * Retorna el porcentaje si es mujer.
+	 * @param isMujer
+	 * @return
+	 */
+	private static double calcularPorcentajeParaMujer(final boolean isMujer) {
+		double porcentajeParaMujer = 0.02;
+		double porcentajeTotalAniadido = 0.0;
 		if(isMujer) {
 			porcentajeTotalAniadido = porcentajeParaMujer;
-		}
-		if(hasHijos) {
-			porcentajeTotalAniadido += porcentajeConHijos;
 		}
 		return porcentajeTotalAniadido;
 	}
