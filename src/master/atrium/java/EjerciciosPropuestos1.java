@@ -14,7 +14,7 @@ public class EjerciciosPropuestos1 {
 		var numHijos = 3;
 		var isMujer = false;
 		var tiempo = 12;
-		System.out.println("¿es segundoNumero par? " + isPar(primerNumero));
+		System.out.println("¿es primerNumero par? " + isPar(primerNumero));
 		System.out.println("¿es segundoNumero par? " + isPar(segundoNumero));
 		System.out.println("¿qué número es mayor entre "+ primerNumero + " y " + segundoNumero + " ? El " + getMayor(primerNumero, segundoNumero));
 		System.out.println("¿qué número es mayor? El "+getMayor(primerNumero,segundoNumero,3,2,5,6));
